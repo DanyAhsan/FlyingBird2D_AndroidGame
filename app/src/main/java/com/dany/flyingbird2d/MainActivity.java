@@ -114,10 +114,19 @@ public class MainActivity extends AppCompatActivity {
     public void showInfoDialog(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Game Info");
-        builder.setMessage("- Drag plane upward/downward to control the altitude\n- Missing a bird will result in Game Over\n- Hitting a bird will also result in Game Over");
+        builder.setMessage("- Drag plane upward/downward to control the altitude\n- Tap to fire\n- Missing a bird will result in Game Over\n- Hitting a bird will also result in Game Over");
         builder.setPositiveButton("OK", null);
         builder.show();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Check if auto-rotate is enabled again in onResume
+        if (!isAutoRotateEnabled()) {
+            // Prompt the user to enable auto-rotate
+            showAutoRotatePrompt();
+        }
+    }
 
 }
